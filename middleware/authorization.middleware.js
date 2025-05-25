@@ -1,7 +1,10 @@
+import User from "../models/user.model.js";
+
 export const authorizeRoles = (...roles) => {
-  return (req, res, next) => {
+  return async(req, res, next) => {
     try {
-        if (!roles.includes(req.user.role)) {
+        const _User = await User.findById(req.userId);
+        if (!roles.includes(_User.Role)) {
             return res.status(403).json({ message: "Access denied" });
         }
         next();
