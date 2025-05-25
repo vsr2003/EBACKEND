@@ -13,7 +13,7 @@ export const addUserToReq = async(req,res,next) => {
 
         // If no token is found
         if (!token) {
-            return res.status(500).json({ message: 'Token not found in addUserToReq' });
+            return res.status(500).json({ message: 'You must be logged in to access this route.' });
         }
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);

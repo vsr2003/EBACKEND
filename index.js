@@ -15,6 +15,7 @@ import ProductRoutes from './routes/product.routes.js'
 import OrderRoutes from './routes/order.routes.js'
 
 import { addUserToReq } from "./middleware/auth.middleware.js";
+import {authorizeRoles} from './middleware/authorization.middleware.js';
 
 
 
@@ -33,7 +34,7 @@ app.use(cors({origin: ['https://ecogeek.netlify.app','http://localhost:5173'],cr
 // routes
 app.use("/api/v1/auth",AuthRoutes);
 app.use("/api/v1/waste",WasteRoutes);
-app.use("/api/v1/admin",AdminRoutes);
+app.use("/api/v1/admin",addUserToReq, AdminRoutes);
 app.use("/api/v1/appointment",AppointmentRoutes);
 app.use("/api/v1/category",CategoryRoutes);
 app.use("/api/v1/educationalPopup",EducationalPopupRoutes);

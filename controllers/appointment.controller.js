@@ -6,7 +6,6 @@ import {sendEmail} from "../utils/mailSender.js";
 import {AppointmentMailTemplate} from '../MailTemplates/appointment.template.js';
 
 
-
 export const addAppointment = async(req,res) => {
     try {
 
@@ -249,6 +248,9 @@ export const processAppointment = async(req,res) => {
             },
             {new:true}
         )
+
+        const operatorId = req.userId ;
+        
 
         return res.status(200).json({
             success:true,
